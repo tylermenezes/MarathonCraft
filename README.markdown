@@ -14,6 +14,8 @@ Ensure you have Perl installed, and have the HTTP::Server::Simple::CGI module in
 
 Copy the AllPlayersServer.pl script to your Minecraft server directory. Then execute it with `perl AllPlayersServer.pl`.
 
+If you intend to use IRC chat, and want to use a server other than irc.arson-media.com, additional configuration will be required. Follow the instructions here: http://redmine.lightirc.com/projects/lightirc/wiki/Flash_Policy_setup_instructions
+
 Configuration
 ==============
 

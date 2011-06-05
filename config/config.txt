@@ -4,10 +4,14 @@ ServerAddr						localhost
 AllPlayerPort					9898
 MinequeryPort					25566
 
+DefaultStreams					jtv:twit,jtv:eschamptv
+
 IrcEnable						true
 IrcServer						irc.arson-media.com
+IrcRoom							MineForCharity
 IrcPort							6667
 IrcPolicyPort					843
+IrcLanguage						en
 IrcNick							guest_%s			# If this doesn't have "%s" you will only have one guest in IRC.
 IrcSwfSource					http://irc.arson-media.com/
 IrcShowTranslationButton		false
@@ -16,11 +20,9 @@ IrcShowRichTextControls			false
 IrcShowServerWindow				false
 IrcShowJoinPartMessages			false
 IrcShowMenuButton				false
-IrcShowServerWindow				false
 IrcShowNickSelection			false
 IrcShowIdentifySelection		false
 IrcShowRegisterNicknameButton	false
-IrcShowRegisterChannelButton	false
 IrcShowNewQueriesInBackground	false
 IrcNavigationPosition			bottom
 

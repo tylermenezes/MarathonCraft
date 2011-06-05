@@ -73,6 +73,10 @@
 			return isset($this->config[$configVar])? $this->config[$configVar] : $defaultValue;
 		}
 
+		public function Conf($configVar, $defaultValue = ""){
+			echo $this->GetConf($configVar, $defaultValue);
+		}
+
 		public function GetUserStreamingConfig($username){
 			return isset($this->streams[$username])? (object)array("type" => $this->streams[$username][0], "name" => $this->streams[$username][1]) : false;
 		}
