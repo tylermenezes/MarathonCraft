@@ -14,17 +14,6 @@
 		
 		<script "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="js/colorbox/jquery.colorbox.js"></script>
-
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$(".playerimage a").colorbox({photo: true});
-
-				$(".player.streaming").click(function(){
-					myName = $(this).children(".playername").text();
-				});
-			});
-		</script>
- 
 		 <script type="text/javascript" src="js/swfobject.js"></script>
 		 <script type="text/javascript">
 			var params = {};
@@ -57,7 +46,18 @@
 			function sendCommand(command) {
 			  swfobject.getObjectById('chat').sendCommand(command);
 			}
-		 </script>
+
+			$(document).ready(function(){
+				$(".playerimage a").colorbox({photo: true});
+
+				$(".player.streaming").click(function(){
+					myName = $(this).children(".playername").text();
+					$.get("getStream.php", {u : myName}, function(data){
+						$("#stream").html(data);
+					});
+				});
+			});
+		</script>
 
 	</head>
 	<body>
@@ -65,21 +65,44 @@
 			<h1><?php Config::Instance()->Conf("Name"); ?></h1>
 		</div>
 		<div id="content">
-			<div id="stream">
-				
+			<div id="stream">&nbsp;
+				<?php
+					$stream = "";
+					$u = false;
+					
+					if(isset($_GET["stream"])){
+						$u = new User($_GET["stream"]);
+					}
+
+					if($u !== false && $u->IsStreaming()){
+						$stream = $u->GetStream()->GetEmbedCode();
+					}else{
+						foreach(Config::Instance()->GetStreamUsers() as $user){
+							if($user->IsStreaming()){
+								$stream = $user->GetStream()->GetEmbedCode();
+							}
+						}
+					}
+
+					echo $stream;
+				?>
 			</div>
 
 			<?php if(Config::Instance()->GetConf("IrcEnable", false) == "true") : ?>
 				<div id="chat">
+					<div id="lightIRC"><p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p></div>
 					<script type="text/javascript">
-						swfobject.embedSWF("<?php Config::Instance()->Conf("IrcSwfSource"); ?>lightIRC.swf", "chat", "100%", "100%", "10.0.0", "<?php Config::Instance()->Conf("IrcSwfSource"); ?>expressInstall.swf", params);
+						swfobject.embedSWF("<?php Config::Instance()->Conf("IrcSwfSource"); ?>lightIRC.swf", "lightIRC", "100%", "100%", "10.0.0", "<?php Config::Instance()->Conf("IrcSwfSource"); ?>expressInstall.swf", params);
 					</script>
-					<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+					
 				</div>
 			<?php endif; ?>
 			<hr />
-			
 			<div>
+			<div>
+				<p>Green = online; Red = streaming</p>
+				<p>Click on a streaming user to switch to their stream.</p>
+			</div>
 			<div id="columns">
 				<div class="col">
 					<h2 style="color: #2EB448">Marathon Team</h2>

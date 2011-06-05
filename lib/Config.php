@@ -81,6 +81,15 @@
 			return isset($this->streams[$username])? (object)array("type" => $this->streams[$username][0], "name" => $this->streams[$username][1]) : false;
 		}
 
+		public function GetStreamUsers(){
+			$a = array();
+			foreach($this->streams as $user=>$stream){
+				$a[] = new User($user);
+			}
+
+			return $a;
+		}
+
 		public function GetList($type){
 			return isset($this->lists[$type])? $this->lists[$type] : array();
 		}
