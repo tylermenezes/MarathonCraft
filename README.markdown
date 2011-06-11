@@ -3,16 +3,23 @@ Requirements
 
 MarathonCraft requires no database. For best performance, you should install memcached.
 
-Installation
-=============
+Automatic Minecraft Installation
+================================
 
-Copy all the files to a web server. Make sure you're running PHP.
+Run install.sh
+
+Manual Minecraft Installation
+=============================
 
 On your Minecraft server, install the Minequery mod for Bukkit.
 
 Ensure you have Perl installed, and have the HTTP::Server::Simple::CGI module installed. (If you're not sure, try running `cpan install HTTP::Server::Simple::CGI`.)
 
 Copy the AllPlayersServer.pl script to your Minecraft server directory. Then execute it with `perl AllPlayersServer.pl`.
+
+Web Installation
+================
+Copy all the files to a web server. Make sure you're running PHP.
 
 If you intend to use IRC chat, and want to use a server other than irc.arson-media.com, additional configuration will be required. Follow the instructions here: http://redmine.lightirc.com/projects/lightirc/wiki/Flash_Policy_setup_instructions
 
