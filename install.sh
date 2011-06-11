@@ -1,38 +1,43 @@
 #!/bin/sh
 
-sudo mkdir /var/minecraft
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+mkdir /var/minecraft
 cd /var/minecraft
 
-sudo add-apt-repository ppa:sun-java-community-team/sun-java6
-sudo apt-get update
-sudo apt-get install sun-java6-bin sun-java6-plugin -y
-sudo yum install perl-CPAN -y
+add-apt-repository ppa:sun-java-community-team/sun-java6
+apt-get update
+apt-get install sun-java6-bin sun-java6-plugin unzip -y
+yum install perl-CPAN -y
 
-sudo perl -MCPAN -e 'install HTTP::Server::Simple::CGI'
+perl -MCPAN -e 'install HTTP::Server::Simple::CGI'
 
-sudo wget http://www.minecraft.net/download/minecraft_server.jar
-sudo wget https://raw.github.com/tylermenezes/MarathonCraft/master/AllPlayersServer.pl
+wget http://www.minecraft.net/download/minecraft_server.jar
+wget https://raw.github.com/tylermenezes/MarathonCraft/master/AllPlayersServer.pl
 
-sudo wget http://ci.bukkit.org/job/dev-CraftBukkit/lastSuccessfulBuild/artifact/target/craftbukkit-0.0.1-SNAPSHOT.jar
+wget http://ci.bukkit.org/job/dev-CraftBukkit/lastSuccessfulBuild/artifact/target/craftbukkit-0.0.1-SNAPSHOT.jar
 
 freemem=$(free -m -t | grep "Total" | tr -s ' ' | cut -d " " -f4 | sed -e "s/[^0-9]//g" | tr -d '\n')
 freemem=$(echo "$freemem*.9" | bc -l | xargs printf "%1.0f")
 memunit="M"
 
-sudo cat > minecraft.sh << EOF
+cat > minecraft.sh << EOF
 #!/bin/sh
 nohup java -Xincgc -Xmx$freemem$memunit -jar craftbukkit-0.0.1-SNAPSHOT.jar > /dev/null 2> server.err < /dev/null &
 nohup perl AllPlayersServer.pl > /dev/null 2> /dev/null < /dev/null &
 EOF
 
-sudo chmod +x minecraft.sh
+chmod +x minecraft.sh
 
-sudo mkdir plugins
+mkdir plugins
 cd plugins
-sudo wget https://github.com/downloads/kramerc/minequery/Minequery-1.5.zip
-sudo unzip *.zip
+wget https://github.com/downloads/kramerc/minequery/Minequery-1.5.zip
+unzip *.zip
 
-sudo rm LICENSE.txt
+rm LICENSE.txt
 
 cd ..
-sudo ./minecraft.sh
+./minecraft.sh
