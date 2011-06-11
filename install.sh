@@ -8,7 +8,7 @@ fi
 mkdir /var/minecraft
 cd /var/minecraft
 
-add-apt-repository ppa:sun-java-community-team/sun-java6
+apt-add-repository "http://archive.canonical.com/ubuntu partner"
 apt-get update
 apt-get install sun-java6-bin sun-java6-plugin unzip -y
 yum install perl-CPAN -y
