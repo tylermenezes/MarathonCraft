@@ -10,7 +10,7 @@ cd /var/minecraft
 
 apt-add-repository "http://archive.canonical.com/ubuntu partner"
 apt-get update
-apt-get install sun-java6-bin sun-java6-plugin unzip build-essential -y
+apt-get install sun-java6-bin unzip build-essential -y
 yum install perl-CPAN -y
 
 
