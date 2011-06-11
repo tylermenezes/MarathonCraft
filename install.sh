@@ -3,7 +3,9 @@
 sudo mkdir /var/minecraft
 cd /var/minecraft
 
-sudo apt-get install sun-java6-jre sun-java6-plugin sun-java6-fonts -y
+sudo add-apt-repository ppa:sun-java-community-team/sun-java6
+sudo apt-get update
+sudo apt-get install sun-java6-bin sun-java6-plugin -y
 sudo yum install perl-CPAN -y
 
 sudo perl -MCPAN -e 'install HTTP::Server::Simple::CGI'
