@@ -11,7 +11,7 @@ cd /var/minecraft
 apt-add-repository "http://archive.canonical.com/ubuntu partner"
 apt-get update
 apt-get install sun-java6-bin unzip build-essential -y
-yum install perl-CPAN -y
+yum install perl-CPAN make gcc gcc-c++ -y
 
 
 perl -MCPAN -e 'install HTTP::Server::Simple::CGI;'
