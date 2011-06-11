@@ -14,7 +14,7 @@ apt-get install sun-java6-bin unzip build-essential -y
 yum install perl-CPAN -y
 
 
-perl -MCPAN -e 'install Bundle::CPAN;install CPAN;install HTTP::Server::Simple::CGI;'
+perl -MCPAN -e 'install HTTP::Server::Simple::CGI;'
 
 wget http://www.minecraft.net/download/minecraft_server.jar
 wget https://raw.github.com/tylermenezes/MarathonCraft/master/AllPlayersServer.pl
