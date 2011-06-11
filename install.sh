@@ -10,10 +10,11 @@ cd /var/minecraft
 
 apt-add-repository "http://archive.canonical.com/ubuntu partner"
 apt-get update
-apt-get install sun-java6-bin sun-java6-plugin unzip -y
+apt-get install sun-java6-bin sun-java6-plugin unzip build-essential -y
 yum install perl-CPAN -y
 
-perl -MCPAN -e 'install HTTP::Server::Simple::CGI'
+
+perl -MCPAN -e 'install Bundle::CPAN;install HTTP::Server::Simple::CGI;'
 
 wget http://www.minecraft.net/download/minecraft_server.jar
 wget https://raw.github.com/tylermenezes/MarathonCraft/master/AllPlayersServer.pl
