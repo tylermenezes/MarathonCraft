@@ -3,13 +3,16 @@ Requirements
 
 MarathonCraft requires no database. For best performance, you should install memcached.
 
-Automatic Minecraft Installation
-================================
+Installation
+============
 
-Run install.sh
+Automatic Minecraft Installation
+--------------------------------
+
+Run the following command: `wget https://github.com/tylermenezes/MarathonCraft/raw/master/install.sh;chmod +x install.sh;./install.sh`
 
 Manual Minecraft Installation
-=============================
+-----------------------------
 
 On your Minecraft server, install the Minequery mod for Bukkit.
 
