@@ -1,3 +1,5 @@
+[![endorse](http://api.coderwall.com/tylermenezes/endorsecount.png)](http://coderwall.com/tylermenezes)
+
 Requirements
 =============
 
